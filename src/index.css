@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-app: #141619;
+    --bg-sidebar: #191c20;
+    --bg-toolbar: #1e2226;
+    --bg-surface: #23272c;
+    --bg-surface-raised: #2a2f35;
+    --bg-surface-hover: #31373e;
+    --bg-selection: #2c3a4d;
+
+    --text-primary: #f3f5f7;
+    --text-secondary: #b3bcc5;
+    --text-muted: #7c8792;
+    --text-disabled: #5a636d;
+
+    --border-subtle: #333a42;
+    --border-strong: #454e58;
+    --border-focus: #8ab4f8;
+
+    --accent: #8ab4f8;
+    --accent-strong: #6fa0ed;
+    --accent-soft: rgba(138, 180, 248, 0.15);
+    --success: #6fc48a;
+    --warning: #e0ab5c;
+    --danger: #e07e88;
+    --info: #6fb8c9;
+
+    --cat-image: #b49bea;
+    --cat-video: #e58e9b;
+    --cat-audio: #82c99a;
+    --cat-document: #83b5e8;
+    --cat-archive: #e4b86a;
+    --cat-installer: #e39a67;
+    --cat-code: #73c9d4;
+    --cat-other: #9aa4ad;
+
+    --font-ui: "Plus Jakarta Sans", "Segoe UI", -apple-system, sans-serif;
+    --font-mono: "Cascadia Code", Consolas, monospace;
+  }
+
+  body {
+    font-family: var(--font-ui);
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+  }
+
+  /* Custom sleek scrollbar for desktop */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333a42;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #454e58;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.shadow-floating-dock {
+  box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.6), 0 4px 16px 0 rgba(0, 0, 0, 0.4);
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}

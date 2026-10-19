@@ -1,0 +1,6 @@
+{
+  "name": "Rapihin Desktop",
+  "description": "Aplikasi desktop pengatur berkas dan perpustakaan aset digital Windows berbasis TDD spesifikasi UI/UX.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
