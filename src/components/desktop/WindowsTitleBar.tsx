@@ -1,18 +1,16 @@
 import React from 'react';
-import { Minus, Square, Copy, X, FolderTree, ListTodo, Terminal } from 'lucide-react';
+import { Minus, Square, Copy, X, FolderTree, ListTodo } from 'lucide-react';
 
 interface WindowsTitleBarProps {
   isMaximized: boolean;
   onToggleMaximize: () => void;
   onOpenBacklog: () => void;
-  onOpenTerminalLog?: () => void;
 }
 
 export const WindowsTitleBar: React.FC<WindowsTitleBarProps> = ({
   isMaximized,
   onToggleMaximize,
   onOpenBacklog,
-  onOpenTerminalLog,
 }) => {
   return (
     <header className="h-8 bg-[#191c20] text-[#b3bcc5] border-b border-[#333a42] flex items-center justify-between px-3 select-none text-xs z-50">
@@ -26,34 +24,16 @@ export const WindowsTitleBar: React.FC<WindowsTitleBarProps> = ({
         <span className="text-[#b3bcc5] hidden sm:inline">Windows Desktop File Organizer & Asset Library</span>
       </div>
 
-      {/* Center: Popup Buttons (Panel Backlog & Terminal Log Realtime) */}
-      <div className="flex items-center gap-2">
+      {/* Center: Hanya 1 Button Panel Backlog (tanpa roadmap & tanpa tombol luar lain) */}
+      <div className="flex items-center">
         <button
           onClick={onOpenBacklog}
-          title="Buka Panel Backlog & Roadmap Pengembangan Fitur"
+          title="Buka Panel Backlog"
           className="flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] bg-[#23272c] hover:bg-[#2a2f35] text-[#8ab4f8] hover:text-[#f3f5f7] border border-[#333a42] hover:border-[#8ab4f8]/50 transition-colors focus-ring cursor-pointer shadow-xs"
         >
           <ListTodo className="w-3.5 h-3.5 text-[#8ab4f8]" />
           <span className="font-semibold">Panel Backlog</span>
-          <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-[#2ea043]/20 text-[#3fb950] border border-[#2ea043]/30">
-            Roadmap
-          </span>
         </button>
-
-        {onOpenTerminalLog && (
-          <button
-            onClick={onOpenTerminalLog}
-            title="Buka Terminal Log Realtime (Mesin & Daemon)"
-            className="flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] bg-[#23272c] hover:bg-[#2a2f35] text-[#7ee787] hover:text-[#f3f5f7] border border-[#333a42] hover:border-[#3fb950]/50 transition-colors focus-ring cursor-pointer shadow-xs font-mono"
-          >
-            <Terminal className="w-3.5 h-3.5 text-[#3fb950]" />
-            <span className="font-semibold font-sans">Terminal Log</span>
-            <span className="flex items-center gap-1 px-1.5 py-0.2 rounded text-[9px] font-bold bg-[#2ea043]/20 text-[#3fb950] border border-[#2ea043]/30">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3fb950] animate-pulse"></span>
-              LIVE
-            </span>
-          </button>
-        )}
       </div>
 
       {/* Right: Window Controls */}

@@ -19,7 +19,6 @@ import { MoveFilesModal } from './components/modals/MoveFilesModal';
 import { EditFilesModal } from './components/modals/EditFilesModal';
 import { CommandPalette } from './components/modals/CommandPalette';
 import { BacklogModal } from './components/modals/BacklogModal';
-import { TerminalLogModal } from './components/modals/TerminalLogModal';
 import {
   ActiveArea,
   AiMode,
@@ -78,7 +77,6 @@ export default function App() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isBacklogOpen, setIsBacklogOpen] = useState(false);
-  const [isTerminalLogOpen, setIsTerminalLogOpen] = useState(false);
 
   // Extract all unique tags
   const allTags = useMemo(() => {
@@ -426,7 +424,6 @@ export default function App() {
         isMaximized={isMaximized}
         onToggleMaximize={() => setIsMaximized(!isMaximized)}
         onOpenBacklog={() => setIsBacklogOpen(true)}
-        onOpenTerminalLog={() => setIsTerminalLogOpen(true)}
       />
 
       {/* 2. Central Working Area (4-Zone Layout per TDD §6) */}
@@ -573,7 +570,6 @@ export default function App() {
         scanProgress={scanProgress}
         aiMode={aiMode}
         onOpenBacklog={() => setIsBacklogOpen(true)}
-        onOpenTerminalLog={() => setIsTerminalLogOpen(true)}
       />
 
       {/* Modals & Dialogs */}
@@ -613,11 +609,6 @@ export default function App() {
       <BacklogModal
         isOpen={isBacklogOpen}
         onClose={() => setIsBacklogOpen(false)}
-      />
-
-      <TerminalLogModal
-        isOpen={isTerminalLogOpen}
-        onClose={() => setIsTerminalLogOpen(false)}
       />
     </div>
   );

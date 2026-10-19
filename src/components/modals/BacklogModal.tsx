@@ -397,7 +397,7 @@ export const BacklogModal: React.FC<BacklogModalProps> = ({
               <div className="flex items-center gap-2">
                 <h3 className="text-sm font-bold text-[#f3f5f7]">
                   {activeTab === 'backlog'
-                    ? 'Panel Backlog & Roadmap Pengembangan'
+                    ? 'Panel Backlog'
                     : 'Terminal Log Realtime (Engine & Daemon)'}
                 </h3>
                 {activeTab === 'backlog' ? (
