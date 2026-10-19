@@ -9,7 +9,8 @@ interface StatusBarProps {
   isScanning: boolean;
   scanProgress: number;
   aiMode: AiMode;
-  onOpenStateTester: () => void;
+  onOpenBacklog?: () => void;
+  onOpenTerminalLog?: () => void;
 }
 
 export const StatusBar: React.FC<StatusBarProps> = ({
@@ -19,7 +20,8 @@ export const StatusBar: React.FC<StatusBarProps> = ({
   isScanning,
   scanProgress,
   aiMode,
-  onOpenStateTester,
+  onOpenBacklog,
+  onOpenTerminalLog,
 }) => {
   const getAiModeLabel = (mode: AiMode) => {
     switch (mode) {
@@ -70,13 +72,26 @@ export const StatusBar: React.FC<StatusBarProps> = ({
         </div>
         <span className="text-[#333a42]">|</span>
         <button
-          onClick={onOpenStateTester}
+          onClick={onOpenBacklog}
           className="flex items-center gap-1 text-[#8ab4f8] hover:text-[#f3f5f7] cursor-pointer"
-          title="Verifikasi 14 Kriteria Terima TDD"
+          title="Buka Panel Backlog & Roadmap Pengembangan"
         >
           <CheckCircle2 className="w-3 h-3 text-[#6fc48a]" />
-          <span>TDD A1-A14: Lulus</span>
+          <span>Panel Backlog</span>
         </button>
+        {onOpenTerminalLog && (
+          <>
+            <span className="text-[#333a42]">|</span>
+            <button
+              onClick={onOpenTerminalLog}
+              className="flex items-center gap-1.5 text-[#3fb950] hover:text-[#7ee787] cursor-pointer"
+              title="Buka Terminal Log Realtime Daemon & File System"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3fb950] animate-pulse"></span>
+              <span>Terminal Log</span>
+            </button>
+          </>
+        )}
       </div>
     </footer>
   );

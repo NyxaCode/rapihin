@@ -322,17 +322,10 @@ export const ContextSidebar: React.FC<ContextSidebarProps> = ({
   // If in Settings view, render Settings Subtabs navigation
   if (activeArea === 'pengaturan') {
     const settingsTabs = [
-      { id: 'umum', label: 'Umum', icon: Sliders },
-      { id: 'tampilan', label: 'Tampilan & Tema', icon: PaletteIcon },
-      { id: 'folder_sumber', label: 'Folder Sumber', icon: Database },
-      { id: 'mode_ai', label: 'Mode Kecerdasan', icon: Cpu },
-      { id: 'koneksi_provider', label: 'Koneksi Provider', icon: Key },
-      { id: 'aturan_preset', label: 'Aturan & Preset', icon: Sliders },
-      { id: 'kategori_warna', label: 'Kategori & Warna', icon: PaletteIcon },
-      { id: 'keamanan_privasi', label: 'Keamanan & Privasi', icon: Shield },
-      { id: 'performa', label: 'Performa', icon: Zap },
-      { id: 'lanjutan', label: 'Lanjutan', icon: Terminal },
-      { id: 'tentang', label: 'Tentang Rapihin', icon: Info },
+      { id: 'umum', label: 'Umum & Tampilan', icon: Sliders, count: '4' },
+      { id: 'aturan', label: 'Aturan & Kategori', icon: PaletteIcon, count: '7' },
+      { id: 'kecerdasan', label: 'Kecerdasan & Privasi', icon: Cpu, count: '3' },
+      { id: 'pemantauan_log', label: 'Pemantauan Log Pengerjaan', icon: Terminal, count: 'Live' },
     ];
 
     return (
@@ -360,7 +353,18 @@ export const ContextSidebar: React.FC<ContextSidebarProps> = ({
                   <Icon className="w-3.5 h-3.5 shrink-0" />
                   <span className="truncate">{tab.label}</span>
                 </div>
-                {isActive && <ChevronRight className="w-3.5 h-3.5 text-[#8ab4f8]" />}
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span
+                    className={`px-1.5 py-0.2 rounded text-[10px] font-mono font-bold ${
+                      tab.id === 'pemantauan_log'
+                        ? 'bg-[#2ea043]/20 text-[#3fb950] border border-[#2ea043]/40'
+                        : 'bg-[#141619] text-[#7c8792] border border-[#333a42]'
+                    }`}
+                  >
+                    {tab.count}
+                  </span>
+                  {isActive && <ChevronRight className="w-3.5 h-3.5 text-[#8ab4f8]" />}
+                </div>
               </button>
             );
           })}

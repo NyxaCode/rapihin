@@ -1,18 +1,18 @@
 import React from 'react';
-import { Minus, Square, Copy, X, FolderTree, Sliders, Laptop, ShieldCheck } from 'lucide-react';
+import { Minus, Square, Copy, X, FolderTree, ListTodo, Terminal } from 'lucide-react';
 
 interface WindowsTitleBarProps {
   isMaximized: boolean;
   onToggleMaximize: () => void;
-  onOpenStateTester: () => void;
-  activeStateLabel: string;
+  onOpenBacklog: () => void;
+  onOpenTerminalLog?: () => void;
 }
 
 export const WindowsTitleBar: React.FC<WindowsTitleBarProps> = ({
   isMaximized,
   onToggleMaximize,
-  onOpenStateTester,
-  activeStateLabel,
+  onOpenBacklog,
+  onOpenTerminalLog,
 }) => {
   return (
     <header className="h-8 bg-[#191c20] text-[#b3bcc5] border-b border-[#333a42] flex items-center justify-between px-3 select-none text-xs z-50">
@@ -26,22 +26,40 @@ export const WindowsTitleBar: React.FC<WindowsTitleBarProps> = ({
         <span className="text-[#b3bcc5] hidden sm:inline">Windows Desktop File Organizer & Asset Library</span>
       </div>
 
-      {/* Center: Simulator state helper badge */}
+      {/* Center: Popup Buttons (Panel Backlog & Terminal Log Realtime) */}
       <div className="flex items-center gap-2">
         <button
-          onClick={onOpenStateTester}
-          title="Uji 6 State TDD (Kosong, Memuat, Gagal, dll.) & Matriks Verifikasi"
-          className="flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] bg-[#23272c] hover:bg-[#2a2f35] text-[#8ab4f8] border border-[#333a42] transition-colors focus-ring"
+          onClick={onOpenBacklog}
+          title="Buka Panel Backlog & Roadmap Pengembangan Fitur"
+          className="flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] bg-[#23272c] hover:bg-[#2a2f35] text-[#8ab4f8] hover:text-[#f3f5f7] border border-[#333a42] hover:border-[#8ab4f8]/50 transition-colors focus-ring cursor-pointer shadow-xs"
         >
-          <Sliders className="w-3 h-3 text-[#8ab4f8]" />
-          <span>State TDD: <strong className="font-medium text-[#f3f5f7] capitalize">{activeStateLabel}</strong></span>
+          <ListTodo className="w-3.5 h-3.5 text-[#8ab4f8]" />
+          <span className="font-semibold">Panel Backlog</span>
+          <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-[#2ea043]/20 text-[#3fb950] border border-[#2ea043]/30">
+            Roadmap
+          </span>
         </button>
+
+        {onOpenTerminalLog && (
+          <button
+            onClick={onOpenTerminalLog}
+            title="Buka Terminal Log Realtime (Mesin & Daemon)"
+            className="flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] bg-[#23272c] hover:bg-[#2a2f35] text-[#7ee787] hover:text-[#f3f5f7] border border-[#333a42] hover:border-[#3fb950]/50 transition-colors focus-ring cursor-pointer shadow-xs font-mono"
+          >
+            <Terminal className="w-3.5 h-3.5 text-[#3fb950]" />
+            <span className="font-semibold font-sans">Terminal Log</span>
+            <span className="flex items-center gap-1 px-1.5 py-0.2 rounded text-[9px] font-bold bg-[#2ea043]/20 text-[#3fb950] border border-[#2ea043]/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3fb950] animate-pulse"></span>
+              LIVE
+            </span>
+          </button>
+        )}
       </div>
 
       {/* Right: Window Controls */}
       <div className="flex items-center">
         <button
-          className="w-8 h-8 flex items-center justify-center hover:bg-[#2a2f35] text-[#b3bcc5] transition-colors focus-ring"
+          className="w-8 h-8 flex items-center justify-center hover:bg-[#2a2f35] text-[#b3bcc5] transition-colors focus-ring cursor-pointer"
           title="Minimize"
           aria-label="Minimize"
         >
@@ -49,18 +67,18 @@ export const WindowsTitleBar: React.FC<WindowsTitleBarProps> = ({
         </button>
         <button
           onClick={onToggleMaximize}
-          className="w-8 h-8 flex items-center justify-center hover:bg-[#2a2f35] text-[#b3bcc5] transition-colors focus-ring"
+          className="w-8 h-8 flex items-center justify-center hover:bg-[#2a2f35] text-[#b3bcc5] transition-colors focus-ring cursor-pointer"
           title={isMaximized ? "Restore Window" : "Maximize Window"}
           aria-label={isMaximized ? "Restore Window" : "Maximize Window"}
         >
           {isMaximized ? <Copy className="w-3 h-3 rotate-180" /> : <Square className="w-3 h-3" />}
         </button>
         <button
-          className="w-8 h-8 flex items-center justify-center hover:bg-[#e07e88] hover:text-white text-[#b3bcc5] transition-colors focus-ring"
+          className="w-8 h-8 flex items-center justify-center hover:bg-[#e07e88] hover:text-white text-[#b3bcc5] transition-colors focus-ring cursor-pointer"
           title="Tutup (Simulasi)"
           aria-label="Close"
           onClick={() => {
-            alert('Aplikasi desktop Rapihin tetap berjalan di tray Windows.');
+            console.log('[System] Aplikasi desktop Rapihin diminimalkan ke system tray Windows.');
           }}
         >
           <X className="w-3.5 h-3.5" />

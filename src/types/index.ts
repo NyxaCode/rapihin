@@ -93,11 +93,24 @@ export interface HistoryCommitNode {
   operationType: string;
   folderSnapshot: FolderNode[];
   status: 'applied' | 'reverted' | 'current';
+  branch?: 'master' | 'develop' | 'feature-clean' | 'feature-ai';
+  branchLabel?: string;
+  branchColor?: string;
+  laneIndex?: number; // 0: Master, 1: Develop, 2: Feature-Clean, 3: Feature-AI
+  colIndex?: number;
+  diffSummary?: {
+    addedCount: number;
+    deletedCount: number;
+    modifiedCount: number;
+  };
   details: {
     from: string;
     to: string;
     fileName: string;
     reason: string;
+    type?: 'added' | 'deleted' | 'moved';
+    sizeFormatted?: string;
+    category?: CategoryId;
   }[];
 }
 

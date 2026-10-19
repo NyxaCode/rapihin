@@ -18,7 +18,8 @@ import { RapikanModal } from './components/modals/RapikanModal';
 import { MoveFilesModal } from './components/modals/MoveFilesModal';
 import { EditFilesModal } from './components/modals/EditFilesModal';
 import { CommandPalette } from './components/modals/CommandPalette';
-import { StateMatrixTester } from './components/modals/StateMatrixTester';
+import { BacklogModal } from './components/modals/BacklogModal';
+import { TerminalLogModal } from './components/modals/TerminalLogModal';
 import {
   ActiveArea,
   AiMode,
@@ -76,7 +77,8 @@ export default function App() {
   const [isMoveModalOpen, setIsMoveModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
-  const [isStateTesterOpen, setIsStateTesterOpen] = useState(false);
+  const [isBacklogOpen, setIsBacklogOpen] = useState(false);
+  const [isTerminalLogOpen, setIsTerminalLogOpen] = useState(false);
 
   // Extract all unique tags
   const allTags = useMemo(() => {
@@ -423,8 +425,8 @@ export default function App() {
       <WindowsTitleBar
         isMaximized={isMaximized}
         onToggleMaximize={() => setIsMaximized(!isMaximized)}
-        onOpenStateTester={() => setIsStateTesterOpen(true)}
-        activeStateLabel={screenState}
+        onOpenBacklog={() => setIsBacklogOpen(true)}
+        onOpenTerminalLog={() => setIsTerminalLogOpen(true)}
       />
 
       {/* 2. Central Working Area (4-Zone Layout per TDD §6) */}
@@ -436,8 +438,8 @@ export default function App() {
           cleanlinessCount={cleanlinessItems.length}
         />
 
-        {/* Zone 2: Context Sidebar (Folder Tree & Files only) */}
-        {isSidebarOpen && (
+        {/* Zone 2: Context Sidebar (Folder Tree & Files only) - Sembunyikan saat di halaman Riwayat agar tidak ada 2 pohon folder */}
+        {isSidebarOpen && activeArea !== 'riwayat' && (
           <ContextSidebar
             activeArea={activeArea}
             folders={INITIAL_FOLDERS}
@@ -489,7 +491,9 @@ export default function App() {
             <KebersihanView
               cleanlinessItems={cleanlinessItems}
               files={files}
+              folders={INITIAL_FOLDERS}
               selectedFolder={selectedFolder}
+              onSelectFolder={setSelectedFolder}
               onResolveItem={handleResolveCleanlinessItem}
               onRefreshScan={handleTriggerScan}
               onDeleteFile={(id) => {
@@ -502,6 +506,8 @@ export default function App() {
           {activeArea === 'riwayat' && (
             <RiwayatView
               manifests={manifests}
+              files={files}
+              folders={INITIAL_FOLDERS}
               onRollback={handleRollbackManifest}
             />
           )}
@@ -566,7 +572,8 @@ export default function App() {
         isScanning={isScanning}
         scanProgress={scanProgress}
         aiMode={aiMode}
-        onOpenStateTester={() => setIsStateTesterOpen(true)}
+        onOpenBacklog={() => setIsBacklogOpen(true)}
+        onOpenTerminalLog={() => setIsTerminalLogOpen(true)}
       />
 
       {/* Modals & Dialogs */}
@@ -603,11 +610,14 @@ export default function App() {
         onStartRapikan={() => setIsRapikanModalOpen(true)}
       />
 
-      <StateMatrixTester
-        isOpen={isStateTesterOpen}
-        onClose={() => setIsStateTesterOpen(false)}
-        currentState={screenState}
-        onSelectState={setScreenState}
+      <BacklogModal
+        isOpen={isBacklogOpen}
+        onClose={() => setIsBacklogOpen(false)}
+      />
+
+      <TerminalLogModal
+        isOpen={isTerminalLogOpen}
+        onClose={() => setIsTerminalLogOpen(false)}
       />
     </div>
   );
