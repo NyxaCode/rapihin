@@ -2,48 +2,57 @@
 
 @layer base {
   :root {
-    --bg-app: #141619;
-    --bg-sidebar: #191c20;
-    --bg-toolbar: #1e2226;
-    --bg-surface: #23272c;
-    --bg-surface-raised: #2a2f35;
-    --bg-surface-hover: #31373e;
-    --bg-selection: #2c3a4d;
+    /* AeroBox Tactile Dark Theme Palette */
+    --bg-app: #0d0f12;
+    --bg-sidebar: #13161c;
+    --bg-toolbar: #171a21;
+    --bg-surface: #1e2229;
+    --bg-surface-raised: #252a33;
+    --bg-surface-hover: #2b313c;
+    --bg-selection: #1c2738;
+    --bg-inset: #101217;
 
-    --text-primary: #f3f5f7;
-    --text-secondary: #b3bcc5;
-    --text-muted: #7c8792;
-    --text-disabled: #5a636d;
+    --text-primary: #f5f7fa;
+    --text-secondary: #9ea5b1;
+    --text-muted: #616875;
+    --text-disabled: #444a54;
 
-    --border-subtle: #333a42;
-    --border-strong: #454e58;
-    --border-focus: #8ab4f8;
+    --border-subtle: #242831;
+    --border-strong: #343b47;
+    --border-focus: #0a84ff;
 
-    --accent: #8ab4f8;
-    --accent-strong: #6fa0ed;
-    --accent-soft: rgba(138, 180, 248, 0.15);
-    --success: #6fc48a;
-    --warning: #e0ab5c;
-    --danger: #e07e88;
-    --info: #6fb8c9;
+    /* Signature Electric Cobalt Blue */
+    --accent: #0a84ff;
+    --accent-strong: #0070e0;
+    --accent-soft: rgba(10, 132, 255, 0.16);
+
+    /* Warm Folder Gold */
+    --folder-gold: #e5ac38;
+    --folder-gold-soft: rgba(229, 172, 56, 0.16);
+
+    --success: #3fb950;
+    --warning: #e5ac38;
+    --danger: #f85149;
+    --info: #0a84ff;
 
     --cat-image: #b49bea;
-    --cat-video: #e58e9b;
-    --cat-audio: #82c99a;
-    --cat-document: #83b5e8;
-    --cat-archive: #e4b86a;
-    --cat-installer: #e39a67;
-    --cat-code: #73c9d4;
-    --cat-other: #9aa4ad;
+    --cat-video: #f87171;
+    --cat-audio: #34d399;
+    --cat-document: #60a5fa;
+    --cat-archive: #e5ac38;
+    --cat-installer: #fb923c;
+    --cat-code: #38bdf8;
+    --cat-other: #94a3b8;
 
-    --font-ui: "Plus Jakarta Sans", "Segoe UI", -apple-system, sans-serif;
-    --font-mono: "Cascadia Code", Consolas, monospace;
+    --font-ui: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
   }
 
   body {
     font-family: var(--font-ui);
     background-color: var(--bg-app);
     color: var(--text-primary);
+    letter-spacing: -0.01em;
   }
 
   /* Custom sleek scrollbar for desktop */
@@ -55,11 +64,11 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #333a42;
+    background: #272c36;
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #454e58;
+    background: #3b4250;
   }
 }
 
@@ -67,8 +76,27 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Tactile Surface Classes */
+.tactile-panel {
+  background: linear-gradient(180deg, #161920 0%, #12141a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+}
+
+.tactile-card {
+  background: linear-gradient(180deg, #1e2229 0%, #191c22 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tactile-inset {
+  background: #101217;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
 .shadow-floating-dock {
-  box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.6), 0 4px 16px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.7), 0 4px 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
 }
 
 .focus-ring:focus-visible {

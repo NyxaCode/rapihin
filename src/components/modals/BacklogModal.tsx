@@ -381,37 +381,37 @@ export const BacklogModal: React.FC<BacklogModalProps> = ({
   });
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs select-none animate-in fade-in">
-      <div className="bg-[#191c20] border border-[#333a42] rounded-xl w-full max-w-4xl flex flex-col max-h-[85vh] shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs select-none animate-in fade-in">
+      <div className="bg-[#13161c] border border-white/10 rounded-2xl w-full max-w-4xl flex flex-col max-h-[85vh] shadow-[0_20px_60px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.08)] overflow-hidden">
         {/* Header Modal */}
-        <div className="p-4 border-b border-[#333a42] bg-[#1e2226] flex items-center justify-between shrink-0">
+        <div className="p-4 border-b border-[#222630] bg-[#171a21] flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#8ab4f8]/20 flex items-center justify-center text-[#8ab4f8]">
+            <div className="w-8 h-8 rounded-xl bg-[#0a84ff]/20 border border-[#0a84ff]/30 flex items-center justify-center text-[#0a84ff]">
               {activeTab === 'backlog' ? (
-                <ListTodo className="w-4 h-4 text-[#8ab4f8]" />
+                <ListTodo className="w-4 h-4 text-[#0a84ff]" />
               ) : (
                 <Terminal className="w-4 h-4 text-[#3fb950]" />
               )}
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-sm font-bold text-[#f3f5f7]">
+                <h3 className="text-sm font-bold text-[#f5f7fa]">
                   {activeTab === 'backlog'
                     ? 'Panel Backlog'
                     : 'Terminal Log Realtime (Engine & Daemon)'}
                 </h3>
                 {activeTab === 'backlog' ? (
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#2ea043]/20 text-[#3fb950] border border-[#2ea043]/40">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#3fb950]/20 text-[#3fb950] border border-[#3fb950]/40">
                     {percentage}% Selesai
                   </span>
                 ) : (
-                  <span className="flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#2ea043]/20 text-[#3fb950] border border-[#2ea043]/40">
+                  <span className="flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#3fb950]/20 text-[#3fb950] border border-[#3fb950]/40">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3fb950] animate-pulse"></span>
                     DAEMON ONLINE
                   </span>
                 )}
               </div>
-              <p className="text-[11px] text-[#7c8792]">
+              <p className="text-[11px] text-[#616875]">
                 {activeTab === 'backlog'
                   ? 'Daftar fitur, tugas pengembangan yang telah selesai, dan rencana berikutnya'
                   : 'Pemantauan aliran log aktivitas latar belakang, pemindahan berkas, dan daemon'}
@@ -421,23 +421,23 @@ export const BacklogModal: React.FC<BacklogModalProps> = ({
 
           <div className="flex items-center gap-2">
             {/* Tab Switcher: Backlog vs Terminal Log Realtime */}
-            <div className="flex items-center bg-[#141619] p-0.5 rounded-lg border border-[#333a42] text-xs">
+            <div className="flex items-center bg-[#101217] p-0.5 rounded-xl border border-white/6 text-xs shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]">
               <button
                 onClick={() => setActiveTab('backlog')}
-                className={`px-3 py-1 rounded-md transition-colors cursor-pointer font-medium ${
+                className={`px-3 py-1 rounded-lg transition-all cursor-pointer font-semibold ${
                   activeTab === 'backlog'
-                    ? 'bg-[#2c3a4d] text-[#8ab4f8]'
-                    : 'text-[#7c8792] hover:text-[#f3f5f7]'
+                    ? 'bg-[#1e2229] text-white border border-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]'
+                    : 'text-[#616875] hover:text-[#f5f7fa]'
                 }`}
               >
                 Backlog ({items.length})
               </button>
               <button
                 onClick={() => setActiveTab('terminal_log')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-md transition-colors cursor-pointer font-medium ${
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all cursor-pointer font-semibold ${
                   activeTab === 'terminal_log'
-                    ? 'bg-[#238636]/30 text-[#3fb950] border border-[#2ea043]/40'
-                    : 'text-[#7c8792] hover:text-[#f3f5f7]'
+                    ? 'bg-[#1e2229] text-[#3fb950] border border-[#3fb950]/30 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]'
+                    : 'text-[#616875] hover:text-[#f5f7fa]'
                 }`}
               >
                 <Terminal className="w-3.5 h-3.5 text-[#3fb950]" />
@@ -448,7 +448,7 @@ export const BacklogModal: React.FC<BacklogModalProps> = ({
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-md hover:bg-[#23272c] text-[#7c8792] hover:text-[#f3f5f7] transition-colors cursor-pointer"
+              className="p-1.5 rounded-lg hover:bg-[#1f232c] text-[#616875] hover:text-[#f5f7fa] transition-colors cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -645,21 +645,21 @@ export const BacklogModal: React.FC<BacklogModalProps> = ({
                   return (
                     <div
                       key={item.id}
-                      className={`p-3 rounded-lg border transition-all flex items-start justify-between gap-3 ${
+                      className={`p-3 rounded-xl border transition-all flex items-start justify-between gap-3 shadow-xs ${
                         isDone
-                          ? 'bg-[#141619]/60 border-[#2ea043]/30 hover:border-[#2ea043]/60'
+                          ? 'bg-[#101217]/60 border-[#3fb950]/25 hover:border-[#3fb950]/50'
                           : isInProgress
-                          ? 'bg-[#1e2226] border-[#eab308]/40 hover:border-[#eab308]'
-                          : 'bg-[#191c20] border-[#333a42] hover:border-[#454e58]'
+                          ? 'bg-[#181c23] border-[#e5ac38]/40 hover:border-[#e5ac38]'
+                          : 'bg-[#101217] border-white/6 hover:border-white/12'
                       }`}
                     >
                       {/* Checkbox toggle status */}
                       <button
                         onClick={() => handleToggleStatus(item.id)}
-                        className={`mt-0.5 w-4.5 h-4.5 rounded flex items-center justify-center transition-colors cursor-pointer shrink-0 ${
+                        className={`mt-0.5 w-4.5 h-4.5 rounded-md flex items-center justify-center transition-all cursor-pointer shrink-0 ${
                           isDone
-                            ? 'bg-[#2ea043] text-[#141619]'
-                            : 'border border-[#333a42] hover:border-[#8ab4f8] bg-[#141619]'
+                            ? 'bg-[#3fb950] text-[#0d0f12] shadow-[0_0_6px_#3fb950]'
+                            : 'border border-white/10 hover:border-[#0a84ff] bg-[#14171d]'
                         }`}
                         title={isDone ? 'Tandai belum selesai' : 'Tandai selesai'}
                       >
@@ -670,26 +670,26 @@ export const BacklogModal: React.FC<BacklogModalProps> = ({
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
                           <span
-                            className={`text-xs font-semibold ${
-                              isDone ? 'text-[#b3bcc5] line-through' : 'text-[#f3f5f7]'
+                            className={`text-xs font-bold ${
+                              isDone ? 'text-[#616875] line-through' : 'text-[#f5f7fa]'
                             }`}
                           >
                             {item.title}
                           </span>
 
                           {/* Modul badge */}
-                          <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-[#141619] text-[#8ab4f8] border border-[#333a42]">
+                          <span className="px-1.5 py-0.2 rounded-md text-[10px] font-mono bg-[#14171d] text-[#0a84ff] border border-white/8">
                             {item.module}
                           </span>
 
                           {/* Priority badge */}
                           <span
-                            className={`px-1.5 py-0.2 rounded text-[9px] font-mono font-bold uppercase ${
+                            className={`px-1.5 py-0.2 rounded-md text-[9px] font-mono font-bold uppercase ${
                               item.priority === 'tinggi'
                                 ? 'bg-[#f85149]/15 text-[#f85149] border border-[#f85149]/30'
                                 : item.priority === 'sedang'
-                                ? 'bg-[#eab308]/15 text-[#eab308] border border-[#eab308]/30'
-                                : 'bg-[#7c8792]/15 text-[#b3bcc5] border border-[#7c8792]/30'
+                                ? 'bg-[#e5ac38]/15 text-[#e5ac38] border border-[#e5ac38]/30'
+                                : 'bg-[#616875]/15 text-[#9ea5b1] border border-white/5'
                             }`}
                           >
                             {item.priority}
@@ -697,21 +697,21 @@ export const BacklogModal: React.FC<BacklogModalProps> = ({
 
                           {/* Status badge */}
                           {isDone ? (
-                            <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-[#2ea043]/20 text-[#3fb950] border border-[#2ea043]/40">
+                            <span className="px-1.5 py-0.2 rounded-md text-[9px] font-mono font-bold bg-[#3fb950]/20 text-[#3fb950] border border-[#3fb950]/40">
                               SELESAI ({item.completedDate})
                             </span>
                           ) : isInProgress ? (
-                            <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-[#eab308]/20 text-[#eab308] border border-[#eab308]/40">
+                            <span className="px-1.5 py-0.2 rounded-md text-[9px] font-mono font-bold bg-[#e5ac38]/20 text-[#e5ac38] border border-[#e5ac38]/40">
                               SEDANG DIKERJAKAN
                             </span>
                           ) : (
-                            <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-[#8ab4f8]/15 text-[#8ab4f8] border border-[#8ab4f8]/30">
+                            <span className="px-1.5 py-0.2 rounded-md text-[9px] font-mono font-bold bg-[#0a84ff]/15 text-[#0a84ff] border border-[#0a84ff]/30">
                               RENCANA
                             </span>
                           )}
                         </div>
 
-                        <p className="text-[11px] text-[#7c8792] mt-1 leading-relaxed">
+                        <p className="text-[11px] text-[#8a919e] mt-1 leading-relaxed">
                           {item.description}
                         </p>
                       </div>
@@ -719,7 +719,7 @@ export const BacklogModal: React.FC<BacklogModalProps> = ({
                       {/* Delete button */}
                       <button
                         onClick={() => handleDeleteItem(item.id)}
-                        className="p-1 hover:bg-[#23272c] rounded text-[#7c8792] hover:text-[#e07e88] transition-colors cursor-pointer shrink-0"
+                        className="p-1 hover:bg-[#181c23] rounded-md text-[#616875] hover:text-[#f85149] transition-colors cursor-pointer shrink-0"
                         title="Hapus item backlog ini"
                       >
                         <Trash2 className="w-3.5 h-3.5" />

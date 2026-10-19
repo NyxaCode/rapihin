@@ -49,11 +49,11 @@ export const NavRail: React.FC<NavRailProps> = ({
 
   return (
     <nav
-      className="w-[68px] bg-[#191c20] border-r border-[#333a42] flex flex-col justify-between py-3 shrink-0 z-40 select-none"
+      className="w-[70px] bg-[#13161c] border-r border-[#222630] flex flex-col justify-between py-3.5 shrink-0 z-40 select-none shadow-[2px_0_12px_rgba(0,0,0,0.3)]"
       aria-label="Navigasi Utama"
     >
       {/* Top navigation items */}
-      <div className="flex flex-col items-center gap-1.5">
+      <div className="flex flex-col items-center gap-2">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeArea === item.id;
@@ -62,28 +62,36 @@ export const NavRail: React.FC<NavRailProps> = ({
             <button
               key={item.id}
               onClick={() => onSelectArea(item.id)}
-              className={`relative w-12 h-12 rounded-lg flex flex-col items-center justify-center gap-1 transition-all group focus-ring cursor-pointer ${
+              className={`relative w-[52px] h-[52px] rounded-xl flex flex-col items-center justify-center gap-1 transition-all group focus-ring cursor-pointer ${
                 isActive
-                  ? 'bg-[#8ab4f8]/15 text-[#8ab4f8]'
-                  : 'text-[#b3bcc5] hover:bg-[#23272c] hover:text-[#f3f5f7]'
+                  ? 'bg-[#1e2229] text-[#f5f7fa] border border-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_2px_8px_rgba(0,0,0,0.4)]'
+                  : 'text-[#8a919e] hover:bg-[#181c23] hover:text-[#f5f7fa] border border-transparent'
               }`}
               title={`${item.label} (${item.shortcut})`}
               aria-label={`${item.label} (${item.shortcut})`}
               aria-current={isActive ? 'page' : undefined}
             >
-              <Icon className={`w-5 h-5 transition-transform ${isActive ? 'scale-105 stroke-[2.2]' : 'stroke-[1.8]'}`} />
-              <span className="text-[10px] font-medium tracking-tight text-center truncate max-w-[56px] leading-tight">
+              <Icon
+                className={`w-5 h-5 transition-transform ${
+                  isActive
+                    ? item.id === 'perpustakaan'
+                      ? 'text-[#e5ac38] scale-105 stroke-[2.2]'
+                      : 'text-[#0a84ff] scale-105 stroke-[2.2]'
+                    : 'stroke-[1.8]'
+                }`}
+              />
+              <span className="text-[10px] font-semibold tracking-tight text-center truncate max-w-[50px] leading-tight">
                 {item.label}
               </span>
 
-              {/* Active left indicator bar */}
+              {/* Signature AeroBox Cobalt Blue Pill Indicator on Left Edge */}
               {isActive && (
-                <div className="absolute -left-2 top-2 bottom-2 w-1 bg-[#8ab4f8] rounded-r-full" />
+                <div className="absolute -left-[9px] top-3 bottom-3 w-[3.5px] bg-[#0a84ff] rounded-r-full shadow-[0_0_8px_#0a84ff]" />
               )}
 
               {/* Badge indicator */}
               {item.badge !== undefined && (
-                <span className="absolute top-1 right-1 px-1 min-w-[16px] h-4 text-[9px] font-mono font-bold bg-[#8ab4f8] text-[#141619] rounded-full flex items-center justify-center">
+                <span className="absolute top-1 right-1 px-1 min-w-[16px] h-4 text-[9px] font-mono font-bold bg-[#0a84ff] text-white rounded-full flex items-center justify-center shadow-[0_0_6px_rgba(10,132,255,0.6)]">
                   {item.badge}
                 </span>
               )}
@@ -96,7 +104,7 @@ export const NavRail: React.FC<NavRailProps> = ({
       <div className="flex flex-col items-center gap-1">
         <button
           onClick={() => onSelectArea('bantuan')}
-          className="w-10 h-10 rounded-lg flex items-center justify-center text-[#7c8792] hover:bg-[#23272c] hover:text-[#f3f5f7] transition-colors focus-ring cursor-pointer"
+          className="w-10 h-10 rounded-xl flex items-center justify-center text-[#616875] hover:bg-[#181c23] hover:text-[#f5f7fa] transition-colors focus-ring cursor-pointer border border-transparent hover:border-[#272c38]"
           title="Bantuan & Panduan Sistem (F1)"
           aria-label="Bantuan dan Dokumentasi"
         >

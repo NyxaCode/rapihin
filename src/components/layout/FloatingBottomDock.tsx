@@ -22,11 +22,9 @@ export const FloatingBottomDock: React.FC<FloatingBottomDockProps> = ({
   scanProgress,
   onTriggerScan,
   onOpenRapikanModal,
-  suggestionsCount,
 }) => {
   const hasSelection = selectedCount > 0;
 
-  // Tombol Rapihkan berubah fungsi: jika ada berkas terpilih, hanya merapihkan berkas tersebut
   const handleRapihkanClick = () => {
     if (hasSelection) {
       onRapikanSelected();
@@ -37,18 +35,18 @@ export const FloatingBottomDock: React.FC<FloatingBottomDockProps> = ({
 
   return (
     <div className="absolute bottom-[20px] left-1/2 -translate-x-1/2 w-[90%] z-40 select-none pointer-events-auto">
-      <div className="w-full flex items-center justify-between gap-3 px-3.5 py-2.5 bg-[#1e2226]/95 backdrop-blur-md border border-[#454e58] rounded-2xl shadow-floating-dock transition-all">
-        {/* Sisi Kiri: Informasi seleksi & Recycle Bin + Batal, atau 'All files selected' saat tidak ada yang dipilih */}
+      <div className="w-full flex items-center justify-between gap-3 px-4 py-2.5 bg-[#13161c]/95 backdrop-blur-md border border-white/10 rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.1)] transition-all">
+        {/* Sisi Kiri: Informasi seleksi & Recycle Bin + Batal */}
         <div className="flex-1 flex items-center min-w-0">
           {hasSelection ? (
             <div className="flex items-center gap-3 text-xs">
-              <span className="font-medium text-[#f3f5f7] whitespace-nowrap">
+              <span className="font-bold text-[#f5f7fa] whitespace-nowrap">
                 {selectedCount} berkas dipilih
               </span>
-              <div className="h-4 w-px bg-[#333a42]" />
+              <div className="h-4 w-px bg-[#262b36]" />
               <button
                 onClick={onDeleteSelected}
-                className="px-3 py-1 bg-[#2a2f35] hover:bg-[#e07e88] hover:text-white text-[#f3f5f7] border border-[#333a42] rounded-md transition-colors flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+                className="px-3 py-1 bg-[#181c23] hover:bg-[#f85149] hover:text-white text-[#f5f7fa] border border-white/8 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap shadow-xs"
                 title="Kirim ke Recycle Bin Windows (Delete)"
               >
                 <Trash2 className="w-3.5 h-3.5" />
@@ -56,55 +54,51 @@ export const FloatingBottomDock: React.FC<FloatingBottomDockProps> = ({
               </button>
               <button
                 onClick={onClearSelection}
-                className="text-[#7c8792] hover:text-[#f3f5f7] px-2 py-1 cursor-pointer whitespace-nowrap"
+                className="text-[#616875] hover:text-[#f5f7fa] px-2 py-1 cursor-pointer whitespace-nowrap transition-colors"
               >
                 Batal
               </button>
             </div>
           ) : (
             <div className="flex items-center text-xs">
-              <span className="font-medium text-[#8ab4f8]/90 whitespace-nowrap">
-                All files selected
+              <span className="font-semibold text-[#0a84ff] whitespace-nowrap">
+                Semua berkas siap dirapikan
               </span>
             </div>
           )}
         </div>
 
-        {/* Sisi Kanan: Pindai & Rapihkan (Teks tetap Rapihkan, berubah fungsi ke berkas terpilih saat ada seleksi) */}
+        {/* Sisi Kanan: Pindai & Rapihkan */}
         <div className="flex items-center gap-2 shrink-0">
           {/* Pindai Action */}
           <button
             onClick={onTriggerScan}
             disabled={isScanning}
-            className="h-8 px-3.5 rounded-lg bg-[#23272c] hover:bg-[#2a2f35] text-[#f3f5f7] text-xs font-semibold flex items-center gap-2 transition-colors cursor-pointer border border-[#333a42] disabled:opacity-50 shrink-0"
+            className="h-8 px-3.5 rounded-xl bg-[#181c23] hover:bg-[#20252e] text-[#f5f7fa] text-xs font-semibold flex items-center gap-2 transition-colors cursor-pointer border border-white/8 disabled:opacity-50 shrink-0 shadow-xs"
             title="Pindai Direktori Berkas"
           >
-            <FolderPlus className={`w-3.5 h-3.5 text-[#8ab4f8] ${isScanning ? 'animate-spin' : ''}`} />
+            <FolderPlus className={`w-3.5 h-3.5 text-[#0a84ff] ${isScanning ? 'animate-spin' : ''}`} />
             <span>
               {isScanning ? `Memindai (${scanProgress}%)` : 'Pindai'}
             </span>
           </button>
 
-          {/* Rapihkan Action: Teks tetap 'Rapihkan', berubah fungsi merapikan N item terpilih jika ada seleksi */}
+          {/* Rapihkan Action with Electric Cobalt Blue Accent */}
           <button
             onClick={handleRapihkanClick}
-            className="h-8 px-4 rounded-lg bg-[#8ab4f8] hover:bg-[#6fa0ed] active:scale-98 text-[#141619] text-xs font-bold flex items-center gap-2 transition-all shadow-md shadow-[#8ab4f8]/20 cursor-pointer shrink-0"
+            className="h-8 px-4 rounded-xl bg-[#0a84ff] hover:bg-[#0070e0] active:scale-98 text-white text-xs font-bold flex items-center gap-2 transition-all shadow-[0_4px_16px_rgba(10,132,255,0.4)] cursor-pointer shrink-0"
             title={hasSelection ? `Rapihkan ${selectedCount} berkas terpilih` : 'Buka Wizard Rapikan Otomatis'}
           >
-            <Wand2 className="w-3.5 h-3.5" />
-            <span>Rapihkan</span>
-            {hasSelection ? (
+            <Wand2 className="w-3.5 h-3.5 fill-white/80" />
+            <span>Rapikan</span>
+            {hasSelection && (
               <span
-                className="px-1.5 py-0.5 bg-[#141619]/25 text-[#141619] rounded-full text-[10px] font-mono font-bold"
+                className="px-1.5 py-0.2 bg-white/20 text-white rounded-full text-[10px] font-mono font-bold"
                 title={`${selectedCount} item terpilih`}
               >
                 {selectedCount}
               </span>
-            ) : suggestionsCount > 0 ? (
-              <span className="px-1.5 py-0.5 bg-[#141619]/25 text-[#141619] rounded-full text-[10px] font-mono font-bold">
-                {suggestionsCount}
-              </span>
-            ) : null}
+            )}
           </button>
         </div>
       </div>

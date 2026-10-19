@@ -418,7 +418,7 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen w-screen bg-[#141619] text-[#f3f5f7] flex flex-col overflow-hidden select-none font-sans">
+    <div className="h-screen w-screen bg-[#0d0f12] text-[#f5f7fa] flex flex-col overflow-hidden select-none font-sans">
       {/* 1. Desktop Shell Title Bar (Windows 11 style) */}
       <WindowsTitleBar
         isMaximized={isMaximized}
